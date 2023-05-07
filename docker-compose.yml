@@ -8,6 +8,8 @@ services:
       - 8000:8000
     depends_on:
       - teacher_db
+    volumes:
+      - ./teacher_app:/app
 
   teacher_db:
     image: mysql:5.7.22
@@ -31,6 +33,8 @@ services:
       - 8001:8000
     depends_on:
       - student_db
+    volumes:
+      - ./student_app:/app
 
   student_db:
     image: mysql:5.7.22
