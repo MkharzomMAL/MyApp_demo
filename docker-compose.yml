@@ -1,0 +1,45 @@
+version: '4.0'
+services:
+  teacher_app:
+    build: 
+      context: ./teacher_app
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - teacher_db
+
+  teacher_db:
+    image: mysql:5.7.22
+    environment:
+      MYSQL_DATABASE: teacherApp_DB
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - ./teacher_app/storage/dbdata:/var/lib/mysql
+    ports:
+      - 33063:3306
+
+
+
+  student_app:
+    build: 
+      context: ./student_app
+      dockerfile: Dockerfile
+    ports:
+      - 8001:8000
+    depends_on:
+      - student_db
+
+  student_db:
+    image: mysql:5.7.22
+    environment:
+      MYSQL_DATABASE: studentApp_DB
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+    volumes:
+      - ./student_app/storage/dbdata:/var/lib/mysql
+    ports:
+      - 33064:3306
