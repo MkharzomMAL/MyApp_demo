@@ -19,4 +19,17 @@ class HomeworkController extends Controller
 
         return response($homework , 201);
     }
+    public function update($id , Request $request){
+        $homework = Homework::find($id);
+
+        $homework->update($request->only('title','description','due_date','user_id','assign_class'));
+
+        return response($homework,202);
+    }
+
+    public function destroy($id){
+        Homework::destroy($id) ;
+
+        return response(null , 204) ;
+    }
 }

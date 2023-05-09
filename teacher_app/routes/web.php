@@ -28,5 +28,6 @@ Route::get('/profile', [HomeController::class, 'profile'])
     ->name('profile');
  
     
-Route::get('/teachers', [HomeController::class, 'teachers'])->name('teachers');
-    
+Route::get('/teachers', [HomeController::class, 'teachers'])->middleware('auth')->name('teachers');
+
+Route::get('/homeworks', [HomeController::class, 'homeworks'])->middleware('auth')->name('homeworks');

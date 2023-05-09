@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Homework;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia ;
 
 class HomeController extends Controller
@@ -31,7 +33,14 @@ class HomeController extends Controller
     {
         $users = User::orderby('id','DESC')->get();
         
-        return view('teachers',compact('users'));
+        return view('teachers/index',compact('users'));
+
+    }
+    public function homeworks()
+    {
+        $homeworks = Homework::where('user_id' , Auth::user()->id )->orderby('id','DESC')->get();
+        
+        return view('homeworks/index',compact('homeworks'));
 
     }
     
