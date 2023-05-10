@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Jobs\HomeworkCreated;
 use App\Jobs\TestJob;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -12,9 +13,7 @@ class EventServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        \App::bindMethod(TestJob::class . '@handle' , function($job){
-
-            return $job->handle();
-        }) ;
+        \App::bindMethod(TestJob::class . '@handle' , fn($job) => $job->handle());
+        \App::bindMethod(HomeworkCreated::class . '@handle' , fn($job) => $job->handle());
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\HomeworkCreated;
 use App\Models\Homework;
 use Illuminate\Http\Request;
 use Response;
@@ -15,7 +16,9 @@ class HomeworkController extends Controller
         return Homework::find($id);
     }
     public function store(Request $request){
+
         $homework = Homework::create($request->only('title','description','due_date','user_id','assign_class'));
+        HomeworkCreated::dispatch()->onQueue('student_queue');
 
         return response($homework , 201);
     }

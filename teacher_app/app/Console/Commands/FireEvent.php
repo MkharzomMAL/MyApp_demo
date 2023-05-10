@@ -17,7 +17,7 @@ class FireEvent extends Command
     public function handle()
     {
         echo 'fired' ;
-        TestJob::dispatch();
+        TestJob::dispatch()->onQueue('student_queue');
         echo 'done' ;
 
     }

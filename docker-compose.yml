@@ -4,12 +4,21 @@ services:
     build: 
       context: ./teacher_app
       dockerfile: Dockerfile
+    command: 'php artisan serve --host=0.0.0.0'
     ports:
       - 8000:8000
     depends_on:
       - teacher_db
     volumes:
       - ./teacher_app:/app
+
+  teacher_queue:
+    build: 
+      context: ./teacher_app
+      dockerfile: Dockerfile
+    command: 'php artisan queue:work'
+    depends_on:
+      - teacher_db
 
   teacher_db:
     image: mysql:5.7.22
@@ -29,12 +38,22 @@ services:
     build: 
       context: ./student_app
       dockerfile: Dockerfile
+    command: 'php artisan serve --host=0.0.0.0'
     ports:
       - 8001:8000
     depends_on:
       - student_db
     volumes:
       - ./student_app:/app
+
+  student_queue:
+    build: 
+      context: ./student_app
+      dockerfile: Dockerfile
+    command: 'php artisan queue:work'
+    depends_on:
+      - student_db
+
 
   student_db:
     image: mysql:5.7.22

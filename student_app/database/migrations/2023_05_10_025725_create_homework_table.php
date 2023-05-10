@@ -19,8 +19,7 @@ class CreateHomeworkTable extends Migration
             $table->longText('description')->nullable();
             $table->string('due_date')->nullable();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->on('users')->references('id');
+            $table->string('teacher_id');
 
             $table->string('assign_class')->nullable();
 

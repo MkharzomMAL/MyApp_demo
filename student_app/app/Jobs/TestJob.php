@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Homework;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -30,6 +31,16 @@ class TestJob implements ShouldQueue
      */
     public function handle()
     {
-        echo 'EVENT handle';
+        echo 'new EVENT handle';
+        
+        Homework::create([
+            'id' => '2',
+            'title' => '$this->data',
+            'description' => 'yhffg',
+            'teacher_id' => '5',
+
+        ]);
+
+        echo 'done';
     }
 }

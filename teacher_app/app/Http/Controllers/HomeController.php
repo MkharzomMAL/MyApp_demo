@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\TestJob;
 use App\Models\Homework;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -39,7 +40,6 @@ class HomeController extends Controller
     public function homeworks()
     {
         $homeworks = Homework::where('user_id' , Auth::user()->id )->orderby('id','DESC')->get();
-        
         return view('homeworks/index',compact('homeworks'));
 
     }
