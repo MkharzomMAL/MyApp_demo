@@ -14,7 +14,17 @@ class CreateHomeworkTable extends Migration
     public function up()
     {
         Schema::create('homework', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger('id')->primary();
+            $table->string('title');
+            $table->longText('description')->nullable();
+            $table->string('due_date')->nullable();
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->on('users')->references('id');
+
+            $table->string('assign_class')->nullable();
+
+            $table->longText('solution')->nullable();
             $table->timestamps();
         });
     }
