@@ -24,15 +24,15 @@ class HomeworkCreated implements ShouldQueue
     public function handle()
     {
         echo 'new test done' ;
-        // Homework::create([
-        //     'id' => $this->data['id'],
-        //     'title' => $this->data['title'],
-        //     'description' => $this->data['description'],
-        //     'teacher_id' => $this->data['user_id'],
-        //     'due_date' => $this->data['due_date'],
-        //     'assign_class' => $this->data['assign_class'],
-        //     'created_at' => $this->data['created_at'],
-        //     'update_at' => $this->data['update_at'],
-        // ]);
+        Homework::create([
+            'id' => $this->data['id'],
+            'title' => $this->data['title'],
+            'description' => $this->data['description'],
+            'teacher_id' => $this->data['user_id'],
+            'due_date' => $this->data['due_date'],
+            'assign_class' => $this->data['assign_class'],
+            'created_at' => $this->data['created_at'],
+            'updated_at' => $this->data['updated_at'],
+        ]);
     }
 }

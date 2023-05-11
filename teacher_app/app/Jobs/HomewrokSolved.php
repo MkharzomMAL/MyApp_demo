@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Solution;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,14 +14,11 @@ class HomewrokSolved implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $data , $id ;
+    public function __construct($id , $data)
     {
-        //
+        $this->data = $data ;
+        $this->id = $id ;
     }
 
     /**
@@ -30,6 +28,11 @@ class HomewrokSolved implements ShouldQueue
      */
     public function handle()
     {
-        //
+        Solution::create([
+            'student_id' => $this-> id ,
+            'homework_id' => $this-> data['id'],
+            'content' => $this-> data['solution'] ,
+        ]);
+
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\HomeworkCreated;
+use App\Jobs\HomeworkDeleted;
+use App\Jobs\HomeworkUpdated;
 use App\Models\Homework;
 use Illuminate\Http\Request;
 use Response;
@@ -27,11 +29,15 @@ class HomeworkController extends Controller
 
         $homework->update($request->only('title','description','due_date','user_id','assign_class'));
 
+        HomeworkUpdated::dispatch($homework->toArray())->onQueue('student_queue');
+        
         return response($homework,202);
     }
 
     public function destroy($id){
         Homework::destroy($id) ;
+
+        HomeworkDeleted::dispatch($id)->onQueue('student_queue');
 
         return response(null , 204) ;
     }

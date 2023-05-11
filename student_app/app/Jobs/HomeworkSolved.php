@@ -13,14 +13,11 @@ class HomeworkSolved implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $data , $id ;
+    public function __construct($id , $data)
     {
-        //
+        $this->data = $data ;
+        $this->id = $id ;
     }
 
     /**

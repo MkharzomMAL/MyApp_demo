@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Homework;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,23 +14,26 @@ class HomeworkUpdated implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $data ;
+    public function __construct($data)
     {
-        //
+        $this->data = $data ;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
+  
     public function handle()
     {
-        //
+        echo 'new test done' ;
+        $homework = Homework::find($this->data['id']);
+
+        $homework->update([
+            'title' => $this->data['title'],
+            'description' => $this->data['description'],
+            'teacher_id' => $this->data['user_id'],
+            'due_date' => $this->data['due_date'],
+            'assign_class' => $this->data['assign_class'],
+            'created_at' => $this->data['created_at'],
+            'updated_at' => $this->data['updated_at'],
+        ]);
     }
 }

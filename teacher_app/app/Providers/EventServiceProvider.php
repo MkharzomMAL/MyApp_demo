@@ -17,9 +17,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         \App::bindMethod(TestJob::class . '@handle' , fn($job) => $job->handle());
-        \App::bindMethod(HomeworkCreated::class . '@handle' , fn($job) => $job->handle());
-        \App::bindMethod(HomeworkUpdated::class . '@handle' , fn($job) => $job->handle());
-        \App::bindMethod(HomeworkDeleted::class . '@handle' , fn($job) => $job->handle());
         \App::bindMethod(HomeworkSolved::class . '@handle' , fn($job) => $job->handle());
     }
 }

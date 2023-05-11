@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Homework;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,14 +14,10 @@ class HomeworkDeleted implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $id ;
+    public function __construct($id)
     {
-        //
+        $this->id = $id ;
     }
 
     /**
@@ -30,6 +27,6 @@ class HomeworkDeleted implements ShouldQueue
      */
     public function handle()
     {
-        //
+        Homework::destroy($this->id);
     }
 }
