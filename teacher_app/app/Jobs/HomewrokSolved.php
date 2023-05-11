@@ -14,11 +14,10 @@ class HomewrokSolved implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    private $data , $id ;
-    public function __construct($id , $data)
+    private $data  ;
+    public function __construct( $data)
     {
         $this->data = $data ;
-        $this->id = $id ;
     }
 
     /**
@@ -29,9 +28,9 @@ class HomewrokSolved implements ShouldQueue
     public function handle()
     {
         Solution::create([
-            'student_id' => $this-> id ,
-            'homework_id' => $this-> data['id'],
-            'content' => $this-> data['solution'] ,
+            'student_id' => $this-> data['user_id'] ,
+            'homework_id' => $this-> data['homework_id'],
+            'content' => $this-> data['content'] ,
         ]);
 
     }

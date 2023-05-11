@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::put('homework/{id}/submit',[HomeworkController::class,'submit']);
+Route::post('homework/{id}/submit',[HomeworkController::class,'submit']);
