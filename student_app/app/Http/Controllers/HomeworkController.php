@@ -12,22 +12,17 @@ class HomeworkController extends Controller
     public function index(){
         
     }
-    public function submit($id, Request $request)
-{
-    $student_id = $request->input('student_id', Auth::user()->id);
+    public function submit(Request $request)
+    {
+        $student_id = $request->input('student_id', Auth::user()->id);
 
-    $homework = Homework::findOrFail($id);
+        $homework = Homework::findOrFail($request->id);
 
-    $validatedData = $request->validate([
-        'solution' => 'required|string',
-    ]);
+        $homework->update($request->only('solution')) ;
 
-    $homework->solution = $validatedData['solution'];
-    $homework->save();
+        HomeworkSolved::dispatch($student_id, $homework->toArray())->onQueue('teacher_queue');
 
-    HomeworkSolved::dispatch($student_id, $homework->toArray())->onQueue('teacher_queue');
-
-    return response($homework, 202);
-}
+        return response($homework, 202);
+    }
 
 }
