@@ -18,7 +18,7 @@ class HomeworkController extends Controller
     public function store(Request $request){
 
         $homework = Homework::create($request->only('title','description','due_date','user_id','assign_class'));
-        HomeworkCreated::dispatch()->onQueue('student_queue');
+        HomeworkCreated::dispatch($homework->toArray())->onQueue('student_queue');
 
         return response($homework , 201);
     }

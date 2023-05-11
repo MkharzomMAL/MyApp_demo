@@ -14,16 +14,16 @@ class HomeworkCreated implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    // private $data ;
-    public function __construct()
+    private $data ;
+    public function __construct($data)
     {
-        // $this->data = $data ;
+        $this->data = $data ;
     }
 
   
     public function handle()
     {
-        echo 'test done' ;
+        echo 'new test done' ;
         // Homework::create([
         //     'id' => $this->data['id'],
         //     'title' => $this->data['title'],
