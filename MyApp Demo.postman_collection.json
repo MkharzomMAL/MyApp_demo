@@ -146,7 +146,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"solution\": \"This is the solution\",\r\n    \"student_id\": \"3\"\r\n}",
+					"raw": "{\r\n    \"user_id\": \"1\",\r\n    \"homework_id\": \"31\" , \r\n    \"content\":\"This is the solution\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -154,16 +154,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/homework/2/submit",
+					"raw": "http://localhost:8001/api/homework/31/submit",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8000",
+					"port": "8001",
 					"path": [
 						"api",
 						"homework",
-						"2",
+						"31",
 						"submit"
 					]
 				}
