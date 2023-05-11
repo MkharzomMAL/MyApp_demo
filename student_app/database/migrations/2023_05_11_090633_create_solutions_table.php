@@ -19,7 +19,7 @@ class CreateSolutionsTable extends Migration
             $table->foreign('user_id')->on('users')->references('id');
 
             $table->unsignedBigInteger('homework_id');
-            $table->foreign('homework_id')->on('homeworks')->references('id');
+            $table->foreign('homework_id')->on('homework')->references('id');
 
             $table->longText('content')->nullable();
             $table->timestamps();
